@@ -10,6 +10,21 @@ export const pageObjectSchema = z.object({
         type: z.literal('emoji'),
         emoji: z.string(),
       }),
+      z.object({
+        type: z.literal('custom_emoji'),
+        custom_emoji: z.object({
+          id: z.string(),
+          name: z.string().optional(),
+          url: z.string().optional(),
+        }),
+      }),
+      z.object({
+        type: z.literal('icon'),
+        icon: z.object({
+          name: z.string(),
+          color: z.string().optional(),
+        }),
+      }),
     ])
     .nullable(),
   cover: z.discriminatedUnion('type', [externalPropertyResponse, filePropertyResponse]).nullable(),
